@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louisa Tiara — Operations, Product & Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Newsreader:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #fafafa;
+    --gray-50: #f6f6f6;
+    --gray-100: #efefef;
+    --gray-200: #e2e2e2;
+    --gray-300: #c7c7c7;
+    --gray-400: #a0a0a0;
+    --gray-500: #6e6e6e;
+    --gray-600: #4a4a4a;
+    --gray-700: #333;
+    --nav-bg: rgba(250,250,250,0.85);
+    --card-bg: #fafafa;
+    --max-w: 720px;
+    --max-w-wide: 880px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+  }
+
+  [data-theme="dark"] {
+    --black: #e8e8e8;
+    --white: #0e0e0e;
+    --gray-50: #1a1a1a;
+    --gray-100: #1e1e1e;
+    --gray-200: #2a2a2a;
+    --gray-300: #3a3a3a;
+    --gray-400: #6a6a6a;
+    --gray-500: #8a8a8a;
+    --gray-600: #b0b0b0;
+    --gray-700: #d0d0d0;
+    --nav-bg: rgba(14,14,14,0.85);
+    --card-bg: #141414;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+
+  ::selection {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav-inner {
+    max-width: var(--max-w-wide);
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  /* ---------- THEME TOGGLE ---------- */
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--gray-400);
+    background: var(--gray-50);
+  }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    position: absolute;
+  }
+
+  .theme-toggle .icon-sun {
+    color: var(--gray-500);
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .theme-toggle .icon-moon {
+    color: var(--gray-500);
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+
+  [data-theme="dark"] .theme-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  [data-theme="dark"] .theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section-border {
+    max-width: var(--max-w-wide);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .section-border .border-line {
+    border-top: 1px solid var(--gray-200);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 100px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 4.8vw, 44px);
+    font-weight: 800;
+    line-height: 1.22;
+    letter-spacing: -1.5px;
+    color: var(--black);
+    max-width: 660px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 .em {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--gray-500);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 40px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-primary:hover {
+    background: var(--gray-700);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  [data-theme="dark"] .btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(255,255,255,0.06);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border: 1px solid var(--gray-200);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gray-400);
+    transform: translateY(-1px);
+  }
+
+  [data-theme="dark"] .case-study:hover {
+    box-shadow: 0 2px 20px rgba(255,255,255,0.03);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray-400);
+    margin-bottom: 32px;
+  }
+
+  .about-text {
+    max-width: 600px;
+  }
+
+  .about-text p {
+    font-size: 16.5px;
+    line-height: 1.8;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+  }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-text strong {
+    color: var(--black);
+    font-weight: 600;
+  }
+
+  .about-text a {
+    color: var(--black);
+    text-decoration-color: var(--gray-300);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .about-text a:hover {
+    text-decoration-color: var(--black);
+  }
+
+  /* ---------- WORK ---------- */
+  .work {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .case-study {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 20px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    background: var(--card-bg);
+  }
+
+  .case-study:hover {
+    border-color: var(--gray-300);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .cs-header {
+    margin-bottom: 28px;
+  }
+
+  .cs-company {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--gray-400);
+    margin-bottom: 8px;
+  }
+
+  .cs-company a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .cs-company a:hover { color: var(--gray-600); }
+
+  .cs-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    color: var(--black);
+  }
+
+  .building-title a {
+    color: inherit;
+    text-decoration-color: var(--gray-300);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .building-title a:hover {
+    text-decoration-color: var(--black);
+  }
+
+  .cs-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .cs-block-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray-400);
+    margin-bottom: 10px;
+  }
+
+  .cs-block p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-600);
+  }
+
+  .cs-impact {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+
+  .impact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .impact-item {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+
+  .impact-num {
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+  }
+
+  /* ---------- BUILDING ---------- */
+  .building {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .building-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 40px;
+    background: var(--card-bg);
+  }
+
+  .building-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .building-desc {
+    font-size: 16px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+
+  .building-focuses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .focus-tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    padding-top: 80px;
+    padding-bottom: 120px;
+  }
+
+  .contact-text {
+    font-size: 18px;
+    color: var(--gray-500);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 480px;
+  }
+
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--gray-200);
+    transition: border-color 0.2s;
+  }
+
+  .contact-email:hover {
+    border-color: var(--black);
+  }
+
+  .contact-email .arrow {
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+
+  .contact-email:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    max-width: var(--max-w-wide);
+    margin: 0 auto;
+    padding: 24px 32px;
+    border-top: 1px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--black); }
+
+  /* ---------- FADE-IN ---------- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    .hero { padding-top: 72px; padding-bottom: 64px; }
+    .hero h1 { font-size: 26px; letter-spacing: -0.8px; }
+    .hero-sub { font-size: 16px; }
+
+    .about, .work, .building, .contact {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .case-study { padding: 24px; }
+
+    .cs-body {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .cs-title { font-size: 19px; }
+
+    .building-card { padding: 24px; }
+
+    .nav-inner { padding: 0 20px; }
+    section, .section-border { padding-left: 20px; padding-right: 20px; }
+    footer { padding: 20px; }
+
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 12px; }
+    .nav-right { gap: 16px; }
+    .theme-toggle { width: 32px; height: 32px; }
+
+    .impact-grid { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Louisa Tiara</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#building">Building</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <h1>Hi, I'm Louisa — based in Indonesia, working across <span class="em">operations, product,</span> and <span class="em">growth.</span></h1>
+  <p class="hero-sub">I build systems across fintech, infrastructure, and real-world businesses.</p>
+  <div class="hero-ctas">
+    <a href="#work" class="btn btn-primary">View Work ↓</a>
+    <a href="#contact" class="btn btn-secondary">Contact</a>
+  </div>
+</section>
+
+<div class="section-border"><div class="border-line"></div></div>
+
+<!-- ABOUT -->
+<section class="about fade-in" id="about">
+  <p class="section-label">About</p>
+  <div class="about-text">
+    <p>I've spent <strong>5+ years building in fintech and SaaS</strong>. I've worked across North America and Southeast Asia, building platform payments at <a href="https://xendit.co" target="_blank"><strong>Xendit</strong></a>, growth and payments products at <a href="https://paystone.com" target="_blank"><strong>Paystone</strong></a>, and integrations at <a href="https://employmenthero.com" target="_blank"><strong>Employment Hero</strong></a>.</p>
+    <p>Currently, I'm building <a href="https://meimeimatcha.com" target="_blank"><strong>Meimei Matcha</strong></a> — a beverage and distribution business generating ~$230K in annual revenue. I apply the same product thinking across supply chain, operations, and go-to-market, where execution and outcomes matter just as much as strategy.</p>
+    <p>I'm drawn to building things that operate in the real world — where outcomes are tangible and systems are tested by use, not just design.</p>
+  </div>
+</section>
+
+<div class="section-border"><div class="border-line"></div></div>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <p class="section-label">Selected Work</p>
+
+  <div class="case-study fade-in">
+    <div class="cs-header">
+      <p class="cs-company"><a href="https://xendit.co" target="_blank">Xendit</a></p>
+      <h3 class="cs-title">Payment Routing & Platform Payments Infrastructure</h3>
+    </div>
+    <div class="cs-body">
+      <div class="cs-block">
+        <p class="cs-block-label">Problem</p>
+        <p>Platforms and marketplaces needed flexible payment flows — multi-party payments, multiple methods, routing — but systems were rigid and required manual work.</p>
+      </div>
+      <div class="cs-block">
+        <p class="cs-block-label">Solution</p>
+        <p>Built APIs and infrastructure for dynamic payment routing, split payments, and onboarding/KYC flows. Designed modular architecture for scalability.</p>
+      </div>
+      <div class="cs-impact">
+        <p class="cs-block-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-item"><span class="impact-num">80%</span> reduction in onboarding time</div>
+          <div class="impact-item"><span class="impact-num">$3M</span> ARR generated</div>
+          <div class="impact-item"><span class="impact-num">30%</span> month-over-month growth</div>
+          <div class="impact-item">Enabled scalable platform growth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-study fade-in">
+    <div class="cs-header">
+      <p class="cs-company"><a href="https://paystone.com" target="_blank">Paystone</a></p>
+      <h3 class="cs-title">Atom — Integrated Payments, Marketing & Loyalty</h3>
+    </div>
+    <div class="cs-body">
+      <div class="cs-block">
+        <p class="cs-block-label">Problem</p>
+        <p>Merchants used fragmented tools for payments, marketing, and loyalty — limiting growth and efficiency.</p>
+      </div>
+      <div class="cs-block">
+        <p class="cs-block-label">Solution</p>
+        <p>Built Atom, a unified platform combining payments, marketing, and loyalty. Introduced AI-powered SMS campaign generation.</p>
+      </div>
+      <div class="cs-impact">
+        <p class="cs-block-label">Impact</p>
+        <div class="impact-grid">
+          <div class="impact-item">Reduced campaign creation time</div>
+          <div class="impact-item">Enabled non-marketing users</div>
+          <div class="impact-item"><span class="impact-num">200%</span> increase in adoption</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-border"><div class="border-line"></div></div>
+
+<!-- BUILDING -->
+<section class="building fade-in" id="building">
+  <p class="section-label">What I'm Building</p>
+  <div class="building-card">
+    <h3 class="building-title"><a href="https://meimeimatcha.com" target="_blank">Meimei Matcha</a></h3>
+    <p class="building-desc">A fast-growing beverage and distribution business generating ~$230K ARR. Operator mindset, real-world execution.</p>
+    <div class="building-focuses">
+      <span class="focus-tag">Supply Chain</span>
+      <span class="focus-tag">Distribution</span>
+      <span class="focus-tag">Brand & Go-to-Market</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-border"><div class="border-line"></div></div>
+
+<!-- CONTACT -->
+<section class="contact fade-in" id="contact">
+  <p class="section-label">Contact</p>
+  <p class="contact-text">If you're working on fintech, F&B or consumer brands, I'd love to connect.</p>
+  <a href="mailto:louisa@meimeimatcha.com" class="contact-email">
+    louisa@meimeimatcha.com
+    <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Louisa Tiara</span>
+  <ul class="footer-links">
+    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  }
+
+  // Init theme from preference
+  (function() {
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch(e) {}
+  })();
+
+  // Fade-in observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
